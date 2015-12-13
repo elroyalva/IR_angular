@@ -53,52 +53,37 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
   console.log("Blog Controller reporting for duty.");
 });
 
-app.controller('HomeCtrl', function ($scope, $location, $http, $rootScope) {
+app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   console.log("Home Controller reporting for duty.");
   $scope.tags=[{"text":"Syria"},{"text":"Paris"}]
   // function loadItems($query){
   //   return tags;
   // }
-  
+
   $scope.showAdvanced = function(){
     document.getElementById("formAdvanced").removeAttribute("style");
   }
 
-  $rootScope.query = {
-  "query_sent":"El Chapo",
-  "advanced":false,
-  "advanced_attributes":{
-    "tags":[],
-    "location":"india",
-    "date":{"from":"2012-04-23T18:25:43.511Z","to":"2015-12-23T18:25:43.511Z"},
-    "lang":["en","fr","ar","es"],
-    "hasImages":true,
-    "sortbyViews":false,                          
-    "data_source":["twitter","tumblr"],                 
-    "urls":["t.co","fb.com"]
-  }
-};
-    // console.log(JSON.stringify($rootScope.query));
-
-
-
-});
-
-app.controller('ResultCtrl', function($scope, $location, $http, $rootScope){
-  // $.getJSON("../data/response.json", function(json) {
-    // console.log(JSON.stringify(json)); // this will show the info it in firebug console
-    // $rootScope.resultData = json;
-    // console.log(JSON.stringify($scope.resultData.response.docs));
-    // console.log(JSON.stringify($rootScope.query));
-  // });
-alert(JSON.stringify($rootScope.query));
-    var req = {
-     method: 'GET',
+  var req = {
+     method: 'POST',
      url: 'http://192.168.0.13:8080/SolrSearch/solr/search',
      headers: {
        'Content-Type': 'application/json'
      },
-     data: $rootScope.query
+     data: {
+        "query_sent":"Syria",
+        "advanced":false,
+        "advanced_attributes":{
+          "tags":[],
+          "location":"india",
+          "date":{"from":"2012-04-23T18:25:43.511Z","to":"2015-12-23T18:25:43.511Z"},
+          "lang":["en","fr","ar","es"],
+          "hasImages":true,
+          "sortbyViews":false,                          
+          "data_source":["twitter","tumblr"],                 
+          "urls":["t.co","fb.com"]
+        }
+      }
     }
 
     // $http(req).then(function(){...}, function(){...});
@@ -107,10 +92,26 @@ alert(JSON.stringify($rootScope.query));
     $http(req)
     .then(function(data) {
       $scope.data = data;
+      $rootScope.resultData = data.data;
+    // console.log(JSON.stringify($rootScope.resultData));
       // $rootScope.resultData = data;
-      console.log(JSON.stringify(data));
 
     });
+// };
+
+
+
+});
+
+app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
+  // $.getJSON("../data/response.json", function(json) {
+    // console.log(JSON.stringify(json)); // this will show the info it in firebug console
+    // $rootScope.resultData = json;
+    // console.log(JSON.stringify($scope.resultData.response.docs));
+    // console.log(JSON.stringify($rootScope.query));
+  // });
+// alert(JSON.stringify($rootScope.query));
+      alert(JSON.stringify($rootScope.resultData));
 
 });
 
@@ -119,14 +120,4 @@ alert(JSON.stringify($rootScope.query));
  */
 app.controller('PageCtrl', function (/* $scope, $location, $http */) {
   console.log("Page Controller reporting for duty.");
-
-  // Activates the Carousel
-  $('.carousel').carousel({
-    interval: 5000
-  });
-
-  // Activates Tooltips for Social Links
-  $('.tooltip-social').tooltip({
-    selector: "a[data-toggle=tooltip]"
-  })
 });
