@@ -1,0 +1,24 @@
+{
+  "name": "T0021-airpair-angularjs-tutorial",
+  "homepage": "https://github.com/airpair/T0021-airpair-angularjs-tutorial",
+  "authors": [
+    "Elroy Alva <epalva@asu.edu>"
+  ],
+  "description": "IRPro",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route-styles": "*",
+    "ng-tags-input": "~3.0.0",
+    "angularjs-datepicker": "~0.2.16"
+  }
+}

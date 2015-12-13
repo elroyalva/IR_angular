@@ -1,0 +1,189 @@
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 13,
+    "params": {
+      "q": "(text_es:El+Chapo OR text_fr:El+Chapo OR text_en:El+Chapo OR text_ar:Ø¥Ù„+ØªØ´Ø§Ø¨Ùˆ)",
+      "indent": "true",
+      "json": "",
+      "wt": "json"
+    }
+  },
+  "response": {
+    "numFound": 12,
+    "start": 0,
+    "docs": [
+      {
+        "id": "_Nelly401",
+        "lang": "en",
+        "count": 0,
+        "source": "Twitter",
+        "emotion": "Neutral",
+        "text_en": "I was hoping that El Chapo & ISIS beef was Real ðŸ˜’",
+        "entity_organization": [
+          "&",
+          "ISIS",
+          "El",
+          "Chapo"
+        ],
+        "created_at": "2015-12-11T16:17:13Z",
+        "_version_": 1520297507371876352
+      },
+      {
+        "id": "xx_rachelmarie",
+        "lang": "en",
+        "count": 1,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "RT @evecaitlyn: El Chapo is taking on ISIS..what a time to be alive",
+        "entity_location": [
+          "El",
+          "Chapo"
+        ],
+        "created_at": "2015-12-11T16:17:02Z",
+        "_version_": 1520297513381265408
+      },
+      {
+        "id": "adriyabish",
+        "lang": "en",
+        "count": 206,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "RT @yovabundra: tfw el chapo wants to destroy isis https://t.co/dENcBt76XD",
+        "created_at": "2015-12-11T16:16:54Z",
+        "_version_": 1520297516128534528
+      },
+      {
+        "id": "Atusiimirwe_",
+        "lang": "en",
+        "count": 0,
+        "source": "Twitter",
+        "emotion": "Neutral",
+        "text_en": "El Chapo and ISIS must be friends. There's no way they can attack each other.",
+        "entity_organization": [
+          "ISIS"
+        ],
+        "entity_location": [
+          "El",
+          "Chapo"
+        ],
+        "created_at": "2015-12-11T16:17:12Z",
+        "_version_": 1520297508728733696
+      },
+      {
+        "id": "seanucci",
+        "lang": "en",
+        "count": 4832,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "RT @fox32news: El Chapo threatens war on ISIS after terrorists destroy drug shipment https://t.co/PIm6KgLRAp https://t.co/jbiWQh3wDh",
+        "entity_organization": [
+          "ISIS"
+        ],
+        "entity_location": [
+          "El",
+          "Chapo"
+        ],
+        "url": [
+          "https://t.co/PIm6KgLRAp"
+        ],
+        "created_at": "2015-12-11T16:17:11Z",
+        "_version_": 1520297509143969792
+      },
+      {
+        "id": "archbishophynes",
+        "lang": "en",
+        "count": 0,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "'World's biggest' drug kingpin El Chapo declares war on ISIS with chilling threat https://t.co/qQlacFzEbv",
+        "entity_organization": [
+          "El",
+          "Chapo"
+        ],
+        "url": [
+          "https://t.co/qQlacFzEbv"
+        ],
+        "created_at": "2015-12-11T16:17:04Z",
+        "_version_": 1520297512333737984
+      },
+      {
+        "id": "StayGettingit_E",
+        "lang": "en",
+        "count": 41,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "RT @HIGH_TIMES_Mag: #TRENDING - Notorious Drug Kingpin El Chapo Declares War on ISIS\nhttps://t.co/p8bS2tgTqM",
+        "entity_location": [
+          "El",
+          "Chapo"
+        ],
+        "hashtags": [
+          "TRENDING"
+        ],
+        "url": [
+          "https://t.co/p8bS2tgTqM"
+        ],
+        "created_at": "2015-12-11T16:16:58Z",
+        "_version_": 1520297514701422592
+      },
+      {
+        "id": "Brandon_Buggs",
+        "lang": "en",
+        "count": 4832,
+        "source": "Twitter",
+        "emotion": "Negative",
+        "text_en": "RT @fox32news: El Chapo threatens war on ISIS after terrorists destroy drug shipment https://t.co/PIm6KgLRAp https://t.co/jbiWQh3wDh",
+        "entity_organization": [
+          "ISIS"
+        ],
+        "entity_location": [
+          "El",
+          "Chapo"
+        ],
+        "url": [
+          "https://t.co/PIm6KgLRAp"
+        ],
+        "created_at": "2015-12-11T16:16:51Z",
+        "_version_": 1520297517408845824
+      },
+      {
+        "id": "23662134345",
+        "lang": "en",
+        "source": "Flickr",
+        "emotion": "Negative",
+        "text_en": "Isis just fucked up lol apperantly they fucked with the cartels buisness and El Chapo just dropped a warning. How Badass would that be to see the cartel rain down on this saudi proxy army? If they think there little videos are bad they haven't seen the sh",
+        "images": [
+          "https://flickr.com/photos/137925625@N05/23662134345"
+        ],
+        "created_at": "2015-12-11T16:20:02.945Z",
+        "_version_": 1520297629918953472
+      },
+      {
+        "id": "135002373101",
+        "lang": "en",
+        "count": 0,
+        "source": "Tumblr",
+        "emotion": "Negative",
+        "text_en": "<blockquote><p>Anonymous and El Chapo Completely Despise the ISIS</p><p><img src=\"http://clapway.com/wp-content/uploads/2015/12/6.-El-Chapo-1-1024x683.jpg\"/></p><p>ISIS is sure not making many friends as of late. <a href=\"https://en.wikipedia.org/wiki/List_of_designated_terrorist_groups\">The Islamic militant group</a> not only received a letter from El Chapo declaring war, but they were also trolled by Anonymous. It is apparent that both of them have a major beef with the ISIS.</p>\n<p><img class=\"alignnone size-full wp-image-30581\" src=\"http://clapway.com/wp-content/uploads/2015/12/6.-El-Chapo-3.jpg\" alt=\"ISIS\" width=\"1500\" height=\"1000\"/></p>\n<h3>ANONYMOUS TROLLS THE ISIS</h3>\n<p>For those who are unaware, Anonymous is an activist hacking group. The group posted a message online to ask everyone to troll the ISIS. This was coming after they declared cyber war on them less than a month ago. To troll someone means that you are allegedly trying to argue with them or you are just upsetting them for no reason. They asked anybody who would listen to purposely mock the Islamic militant group. This did indeed happen, as the people who decided to participate in the trolling used the hashtags #Daeshbags, #trollingday, and #isistrollingday. The first one is extremely derogatory, but that was the intent. The trolls swapped the ISIS heads with duck heads. I will let you figure that one out.</p>\n<p><img class=\"alignnone wp-image-30580 size-full\" src=\"http://clapway.com/wp-content/uploads/2015/12/6.-El-Chapo-2.jpg\" alt=\"Anonymous and El Chapo Completely Despise the ISIS\" width=\"1500\" height=\"1000\"/></p>\n<h3>EL CHAPO BACKSTORY</h3>\n<p>Before I go into detail on what El Chapo did, his back story is necessary to know. El Chapo is one of the most wanted drug lords in the world right now. He was recently sent to prison for the second time, but he escaped again. Apparently, he was able to escape via a hole through the shower. His men were the ones who dug the tunnel that would lead him to his escape. This means that he is a wanted man on the run, and now he has declared war against the ISIS, or has he?</p>\n<h3>EL CHAPO DECLARES WAR ON THE ISIS, OR DOES HE?</h3>\n<p>El Chapo wrote a letter threatening the ISIS and he posted it online. His letter mentions that he is declaring war against them. His letter stated that one of their cartelâ€™s shipments were destroyed by the ISIS. He also called out all of their soldiers in his letter. He called them by a name that I do not want to repeat. He made no bones about it in his letter that he did not respect them, and that his men would destroy and kill them. It was a very detailed and disturbing letter that was written from him. However, many people mention how this could be a hoax. Even if, though, El Chapo still has a beef with them for the cartelâ€™s shipments being destroyed.</p>\n<h3>WHO SHOULD ISIS FEAR MORE: EL CHAPO OR ANONYMOUS?</h3>\n<p>Well let us see, one declared a war and the other declared a cyber war. Anonymous, the oneâ€™s who declared cyber war, were also the ones who trolled the group over the internet. Now, trolling is not necessarily going to physically harm anyone. However, cyber attacking is something that should not be messed with. However, the letter from<a href=\"https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Guzm%C3%A1n\"> El Chapo</a>, if it turns out to be true, is actually declaring war and threatening their people. El Chapo and his gang might be the oneâ€™s to fear in this one, but he is a wanted man and could be back in jail soon.</p>\n<h3>WILL THE ISIS STRIKE BACK?</h3>\n<p>The question now beckons on whether or not the Islamic militant group will respond to both of these events. I believe that they will and that they will in a big way. The stuff that was said to them, and the disrespectful trolling, towards them should lead them to do so. Now, the ISIS is not a group that has led a good cult following. They are a terrorist group and they probably deserve all that they are getting. Nobody will feel sorry for them, but that does not mean they have no right to retaliate.</p>\n<h3>MY THOUGHTS ON THE ISIS, EL CHAPO, AND ANONYMOUS</h3>\n<p>This whole situation is just ugly. That is the best word for all of this. This is dealing with a famous drug lord, an activist hacking group, and an Islamic terrorist group. I really do not think that there is a good way here, but letâ€™s be clear about something the ISIS are not friends of El Chapo and <a href=\"https://www.facebook.com/ArmyAnonymous/\">Anonymous</a>. That we can be 100 percent sure of.</p>\n</blockquote>",
+        "entity_organization": [
+          "El",
+          "Chapo"
+        ],
+        "hashtags": [
+          "Anonymous",
+          "El Chapo",
+          "ISIS"
+        ],
+        "url": [
+          "http://clapway.tumblr.com/post/135002373101/anonymous-and-el-chapo-completely-despise-the-isis"
+        ],
+        "images": [
+          "https://41.media.tumblr.com/d697a0f2f3ac0ef1287db561e23f3590/tumblr_nz7p2qYgJ21tzlqkbo1_1280.jpg"
+        ],
+        "created_at": "2015-12-11T16:00:59Z",
+        "_version_": 1520297542041993216
+      }
+    ]
+  }
+}
