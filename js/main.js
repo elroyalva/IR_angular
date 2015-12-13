@@ -61,7 +61,25 @@ app.controller('HomeCtrl', function ($scope, $location, $http, $rootScope) {
   // }
   
   $scope.showAdvanced = function(){
-    document.getElementById("formAdvanced").removeAttribute("style");
+     if (document.getElementById('formAdvanced').style.display == 'block') {
+       document.getElementById('formAdvanced').style.display = 'none';
+       document.getElementById('showAdvButton').value='Show Advanced Options';
+    }
+    else {
+      document.getElementById('formAdvanced').style.display = 'block';
+       document.getElementById('showAdvButton').value='Hide Advanced Options';
+   }
+  }
+
+  $scope.yesnoCheck = function(){
+    if (document.getElementById('countryCheck').checked) {
+        document.getElementById('isCountry').style.display = 'block';
+         document.getElementById('isCoord').style.display = 'none';
+    }
+    else {
+      document.getElementById('isCountry').style.display = 'none';
+      document.getElementById('isCoord').style.display = 'block';
+   }
   }
 
   $rootScope.query = {
