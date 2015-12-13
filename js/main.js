@@ -59,6 +59,11 @@ app.controller('HomeCtrl', function ($scope, $location, $http, $rootScope) {
   // function loadItems($query){
   //   return tags;
   // }
+  
+  $scope.showAdvanced = function(){
+    document.getElementById("formAdvanced").removeAttribute("style");
+  }
+
   $rootScope.query = {
   "query_sent":"El Chapo",
   "advanced":false,
