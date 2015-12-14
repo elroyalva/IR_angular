@@ -21,7 +21,7 @@
                 </div> -->
                 <h2><span class="st">{{result.id}}</span></h2>
                 <img ng-src="{{result.images[0]}}"/>
-
+                <button class="btn btn-primary" ng-repeat="tag in result.hashtags" ng-href="/tags/:{{tag}}">{{tag}}  </button>
                 <span class="st">{{result.text_en}}</span>
             </div>
         </div>
