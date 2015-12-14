@@ -19,6 +19,8 @@
   "dependencies": {
     "angular-route-styles": "*",
     "ng-tags-input": "~3.0.0",
-    "angularjs-datepicker": "~0.2.16"
+    "angularjs-datepicker": "~0.2.16",
+    "angular-chart.js": "~0.8.8",
+    "Chart.js": "~1.0.2"
   }
 }

@@ -11,7 +11,8 @@ var app = angular.module('tutorialWebApp', [
   'routeStyles',
   'ngTagsInput',
   'ngAnimate',
-  '720kb.datepicker'
+  '720kb.datepicker',
+  'chart.js'
 ]);
 
 /**
@@ -35,7 +36,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     })
     .when("/stats", {
       templateUrl: "partials/stats.html", 
-      controller: "PageCtrl",
+      controller: "StatsCtrl",
       css: "css/main.css"
     })
     // .when("/contact", {templateUrl: "partials/contact.html", controller: "PageCtrl"})
@@ -60,25 +61,6 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   //   return tags;
   // }
 
-  
-  $scope.placeRequest = function(){
-    var daad = document.getElementById('fromDate').value;
-   //var now = new Date();
-   var daa = new Date(daad);
-   dateFormat(daa,"longTime");
-   //var ddd = daa.format("isoDateTime");
-   var aaa = daa+'Z';
-  console.log("time is"+aaa);
-  var placeRequestURL = "http://192.168.0.6:8080/SolrSearch/solr/search";
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", placeRequestURL);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  var send_data_pre = JSON.stringify('{"query_sent":"syria refugee crysis","advanced":true,"advanced_attributes":{"tags":["syria","war","leader"],"location":"","date":{"from":"2012-04-23T18:25:43.511Z","to":"2015-04-23T18:25:43.511Z"},"lang":["en","fr","ar","es"],"hasImages":true,"sortbyViews":false,"data_source":["twitter","tumblr"],"urls":["t.co","fb.com"]}}');
-  var send_data = send_data_pre.substring(1,(send_data_pre.length)-1);
-   xhr.send(send_data);
-
-  }
-
   $scope.showAdvanced = function(){
      if (document.getElementById('formAdvanced').style.display == 'block') {
        document.getElementById('formAdvanced').style.display = 'none';
@@ -101,14 +83,16 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
    }
   }
 
+  // $scope.date = new Date();
+
   var req = {
      method: 'POST',
-     url: 'http://192.168.0.13:8080/SolrSearch/solr/search',
+     url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
      headers: {
        'Content-Type': 'application/json'
      },
      data: {
-        "query_sent":"Syria",
+        "query_sent":"Paris",
         "advanced":false,
         "advanced_attributes":{
           "tags":[],
@@ -155,6 +139,62 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
 /**
  * Controls all other Pages
  */
-app.controller('PageCtrl', function (/* $scope, $location, $http */) {
-  console.log("Page Controller reporting for duty.");
+app.controller('StatsCtrl', function ( $scope, $rootScope, $location, $http) {
+  // console.log("Page Controller reporting for duty.");
+  $scope.hashtagLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+  $scope.hashtagData = [300, 500, 100];
+
+  // var req = {
+  //    method: 'GET',
+  //    url: 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true',
+  //   }
+
+  //   // $http(req).then(function(){...}, function(){...});
+
+
+  //   $http(req)
+  //   .then(function(data) {
+  //     alert(data);
+  //     // $scope.data = data;
+  //     // $rootScope.resultData = data.data;
+  //   // console.log(JSON.stringify($rootScope.resultData));
+  //     // $rootScope.resultData = data;
+      
+  //   });
+
+$http.get('http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true').
+    success(function(data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+      console.log(JSON.stringify(config));
+    });
+
+
+
+
+});
+
+app.directive('img', function () {
+    return {
+        restrict: 'E',        
+        link: function (scope, element, attrs) {     
+            // show an image-missing image
+            element.error(function () {
+                var w = element.width();
+                var h = element.height();
+                // using 20 here because it seems even a missing image will have ~18px width 
+                // after this error function has been called
+                if (w <= 20) { w = 100; }
+                if (h <= 20) { h = 100; }
+                var url = '/images/background.png';
+                element.prop('src', url);
+                element.css('border', 'double 3px #cccccc');
+            });
+        }
+    }
 });
