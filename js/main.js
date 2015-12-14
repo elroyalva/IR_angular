@@ -128,8 +128,8 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
               "tags": searchTags,
               "location": $scope.country,
               "date":{
-                "from":$scope.fromDate,
-                "to":$scope.toDate
+                "from":$scope.fromDate+'T00:00:00.0Z',
+                "to":$scope.toDate+'T23:59:59.9Z'
               },
               "lang": $scope.langAdvanced,
               // "hasImages":true,
