@@ -1,126 +1,121 @@
-<!-- 					<tags-input ng-model="tags">
-					  <auto-complete source="loadItems($query)"></auto-complete>
-					</tags-input> -->
-					<div style="text-align: center; width:100%; margin:auto">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3"></div> 
-								<div class="col-md-6" id="logo_holder"><img src="../images/logo1.png" alt="wildcard logo"></div>
-								<div class="col-md-3"></div> 	
-							</div>
-						
-						    <div class="row">
-								<div class="col-md-2"></div>
-								<div class="col-md-8"><p style="margin-left:8%">A multi-faceted search engine for Twitter, Tumblr and Flickr data.</p></div>
-								<div class="col-md-2"></div>
-							</div>
 
-							<div class="row">
-								<div class="col-md-3"></div>
-								<div class="col-md-6" style="margin-left: 5%"><input class="form-control" id="focusedInput" placeholder="Search for something..." type="text" name="query_sent" style="width:480px"></div>
-								<div class="col-md-3"></div>
-							</div>
+	<div class="container" style="text-align: center">
+		<div class="row">
+			<div class="col-md-3"></div> 
+			<div class="col-md-6" id="logo_holder"><img src="../images/logo1.png" alt="wildcard logo"></div>
+			<div class="col-md-3"></div> 	
+		</div>
+		
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8"><p style="margin-left:8%">A multi-faceted search engine for Twitter, Tumblr and Flickr data.</p></div>
+			<div class="col-md-2"></div>
+		</div>
 
-							<div style="width:80%" class="row" style="margin-top:10px">
-								<div class="col-md-4"></div>
-								<div class="advancedSearch searchStuff" class="col-md-6"><input type="submit" name="submit" value="Search" class="btn btn-primary searchButton" ><input type="button" name="submit" value="Show Advanced Options" class="btn btn-success searchButton" style="margin-left:10px" ng-click="showAdvanced()" id="showAdvButton"></div>
-								<a href="#/results">Result Page</a>
-								<div class="col-md-2"></div>
-							</div>
-							
-							<form method="POST" action="http://192.168.0.6:8080/SolrSearch/solr/search" enctype="application/json">
-							<input type="hidden" name="advanced" id="advanced" value=false>
-							<div id="formAdvanced" style="display:none">
-							<div class="row" style="margin-top:10px">
-								<div class="col-md-4 addItem">
-									<div><label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="tags"/>  <p class="LabelCheck">Search in tags</p>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6" style="margin-left: 5%; margin-top:10%"><input class="form-control" id="focusedInput" placeholder="Search for something..." type="text" name="query_sent" style="width:480px"></div>
+			<div class="col-md-3"></div>
+		</div>
+
+		<div style="width:80%" class="row" style="margin-top:10px">
+			<div class="col-md-4"></div>
+			<div class="advancedSearch searchStuff" class="col-md-6"><input type="button" name="submit" value="Search" class="btn btn-primary searchButton" ng-click="placeRequest()" ><input type="button" name="submit" value="Show Advanced Options" class="btn btn-success searchButton" style="margin-left:10px" ng-click="showAdvanced()" id="showAdvButton"></div>
+
+			<a href="#/results">Result Page</a>
+
+
+			<div class="col-md-2"></div>
+		</div>
+
+		<form method="POST" action="http://192.168.0.6:8080/SolrSearch/solr/search" enctype="application/json">
+			<input type="hidden" ng-model = "advanced" name="advanced" id="advanced" value=false>
+			<div id="formAdvanced" style="display:none">
+				<div class="row" style="margin-top:10px">
+					<div class="col-md-4 addItem">
+						<div><label class="advancedLabel">
+							<p class="LabelCheck">Search in tags</p>
 						</label>
 						<tags-input ng-model="tags">
-					  <auto-complete source="loadItems($query)"></auto-complete>
+						<auto-complete source="loadItems($query)"></auto-complete>
 					</tags-input></div>
-								</div>
-								<div class="col-md-4 addItem">
-									<label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="location"/> <p class="LabelCheck"> Search by location </p>
-						</label>
-						<br/>	
-						Country Name <input type="radio" ng-click="yesnoCheck();" name="yesno" id="countryCheck" checked="checked" style="margin-right: 15px">  Co-ordinates <input type="radio" ng-click="yesnoCheck();" name="yesno" id="coordCheck"><br>
-						<div id="isCountry" style="margin-top:15px">
-							<input type="text" name="country" id="country" placeholder="Enter Name of a country" /> 
-						</div>
-						<div id="isCoord" style="margin-top:15px">
-							<input type="text" name="latitude" id="latitude" placeholder = "Latitude as xx.xx"  pattern="[-+]?[0-9]*[.,]?[0-9]+"/> 
-							<input type="text" name="longitude" id="longitude" placeholder = "Latitude as xx.xx"  pattern="[-+]?[0-9]*[.,]?[0-9]+"/> 
-						</div>
-								</div>
-								<div class="col-md-4 addItem">
-									<label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="tags"/>  <p class="LabelCheck">Search by Date</p>
-						</label>
-						<p class="advancedLabel">From :<input type="text" id="fromDate"></p>
-						<p style="margin-left: 19px;" class="advancedLabel">To   :<input type="text" id="toDate"></p>
-								</div>
-							</div>
-									
-							<div class="row">
-								<div class="col-md-6 addItem">
-									<label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="language"/> <p class="LabelCheck"> Search in Language </p>
-						</label>
-						<br/>
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="useLang" value="en"/>  English
-						</label>
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="useLang" value="fr"/>  French
-						</label>
-						
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="useLang" value="es"/>  Spanish
-						</label>
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="useLang" value="ar"/>  Arabic
-						</label>
-								</div>
-								
-								<div class="col-md-6 addItem">
-									<label class="advancedLabel" style="margin-top:10%">
-							<input type="checkbox" name="useTag" value="relevance"/> <p class="LabelCheck">Search by Popularity (Views) </p>
-						</label>
-								</div>
-							</div>
-									
-							<div class="row">
-								<div class="col-md-6 addItem">
-									<label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="dataSrc"/>  <p class="LabelCheck">Search by Data Source </p>
-						</label><br/>
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="fromdatasrc" value="twitter"/>  Twitter
-						</label>
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="fromdatasrc" value="tumblr"/>  Tumblr
-						</label>
-						
-						<label class="boxWithMargin5">
-							<input type="checkbox" name="fromdatasrc" value="flickr"/>  Flickr
-						</label>
-								</div>
-								<div class="col-md-6 addItem">
-									<label class="advancedLabel">
-							<input type="checkbox" name="useTag" value="urlDefine"/> <p class="LabelCheck"> Search in following URL </p>
-						</label>
-						<br/>
-						<input type="text" name="urlSearch" id="urlSearch" placeholder="eg: t.co"/>
-								</div>
-							</div>
-							</div>
+				</div>
+				<div class="col-md-4 addItem">
+					<label class="advancedLabel"> <p class="LabelCheck"> Search by location </p>
+					</label>
 
-							</form>	
-						</div>
+					<div id="isCountry" style="margin-top:10px">
+						<input type="text" name="country" id="country" ng-model="country" placeholder="Enter Name of a country" /> 
 					</div>
-					<!--
-					<datepicker>
-						<input ng-model="date" date-format="MMMM d, y" class="offset-left2" type="text"/>
-					</datepicker>-->
+				</div>
+				<div class="col-md-4 addItem">
+					<label class="advancedLabel">
+						<p class="LabelCheck">Search by Date</p>
+					</label>
+					<p class="advancedLabel">From :<input type="date" id="fromDate" ng-model="date"></p>
+					<p style="margin-left: 19px;" class="advancedLabel">To   :<input type="date" id="toDate" ng-model="date"></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 addItem">
+					<label class="advancedLabel"><p class="LabelCheck">
+						Search in Language </p>
+					</label>
+					<br/>
+					<label class="boxWithMargin5">
+						<input type="checkbox" ng-model = "languageSelected" name="useLang" value="en"/>  English
+					</label>
+					<label class="boxWithMargin5">
+						<input ng-model = "languageSelected" type="checkbox" name="useLang" value="fr"/>  French
+					</label>
+
+					<label class="boxWithMargin5">
+						<input type="checkbox" name="useLang" ng-model = "languageSelected" value="es"/>  Spanish
+					</label>
+					<label class="boxWithMargin5">
+						<input type="checkbox" name="useLang" value="ar" ng-model = "languageSelected" />  Arabic
+					</label>
+				</div>
+				
+				<div class="col-md-6 addItem">
+					<label class="advancedLabel" style="margin-top:10%">
+						<input type="checkbox" name="usePopularity" ng-model="usePopularity" /> 
+						<p class="LabelCheck">Search by Popularity (Views) </p>
+					</label>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 addItem">
+					<label class="advancedLabel">
+						<p class="LabelCheck">Search by Data Source </p>
+					</label><br/>
+					<label class="boxWithMargin5">
+						<input type="checkbox" name="fromdatasrc" value="twitter" ng-model="fromDataSource"/>  Twitter
+					</label>
+					<label class="boxWithMargin5">
+						<input type="checkbox" name="fromdatasrc" value="tumblr" ng-model="fromDataSource"/>  Tumblr
+					</label>
+
+					<label class="boxWithMargin5">
+						<input type="checkbox" name="fromdatasrc" value="flickr" ng-model="fromDataSource"/>  Flickr
+					</label>
+				</div>
+				<div class="col-md-6 addItem">
+					<label class="advancedLabel">
+						<p class="LabelCheck"> Search in following URL </p>
+					</label>
+					<br/>
+					<input type="text" name="urlSearch" id="urlSearch" ng-model="urlSearch" placeholder="eg: t.co"/>
+				</div>
+			</div>
+		</div>
+
+	</form>	
+</div>
+
+	<!--
+	<datepicker>
+		<input ng-model="date" date-format="MMMM d, y" class="offset-left2" type="text"/>
+	</datepicker>-->

@@ -48,7 +48,7 @@ body{
 .addItem {
 	border: 0.01px dotted #7E6666;
 	height: auto;
-	min-height: 200px;
+	min-height: 166px;
 	background: rgba(207, 158, 207, 0.5) none repeat scroll 0% 0%
 }
 
