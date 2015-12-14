@@ -14,7 +14,9 @@
 
 		<div class="row">
 			<div class="col-md-3"></div>
-			<div class="col-md-6" style="margin-left: 5%; margin-top:10%"><input class="form-control" id="focusedInput" placeholder="Search for something..." type="text" name="query_sent" style="width:480px"></div>
+			<div class="col-md-6" style="margin-left: 5%; margin-top:10%">
+				<input class="form-control" id="focusedInput" placeholder="Search for something..." type="text" name="query_sent" style="width:480px" ng-model="queryText"/>
+			</div>
 			<div class="col-md-3"></div>
 		</div>
 
@@ -45,7 +47,7 @@
 					</label>
 
 					<div id="isCountry" style="margin-top:10px">
-						<input type="text" name="country" id="country" ng-model="country" placeholder="Enter Name of a country" /> 
+						<input type="text" name="country" id="country" ng-model="country" placeholder="Enter name of a country" /> 
 					</div>
 				</div>
 				<div class="col-md-4 addItem">
@@ -70,17 +72,17 @@
 					</label>
 					<br/>
 					<label class="boxWithMargin5">
-						<input type="checkbox" ng-model = "languageSelected" name="useLang" value="en"/>  English
+						<input type="checkbox" ng-model = "languageSelected_en" name="useLang" value="en"/>  English
 					</label>
 					<label class="boxWithMargin5">
-						<input ng-model = "languageSelected" type="checkbox" name="useLang" value="fr"/>  French
+						<input ng-model = "languageSelected_fr" type="checkbox" name="useLang" value="fr"/>  French
 					</label>
 
 					<label class="boxWithMargin5">
-						<input type="checkbox" name="useLang" ng-model = "languageSelected" value="es"/>  Spanish
+						<input type="checkbox" name="useLang" ng-model = "languageSelected_es" value="es"/>  Spanish
 					</label>
 					<label class="boxWithMargin5">
-						<input type="checkbox" name="useLang" value="ar" ng-model = "languageSelected" />  Arabic
+						<input type="checkbox" name="useLang" value="ar" ng-model = "languageSelected_ar" />  Arabic
 					</label>
 				</div>
 				
@@ -98,14 +100,14 @@
 						<p class="LabelCheck">Search by Data Source </p>
 					</label><br/>
 					<label class="boxWithMargin5">
-						<input type="checkbox" name="fromdatasrc" value="twitter" ng-model="fromDataSource"/>  Twitter
+						<input type="checkbox" name="fromdatasrc" value="twitter" ng-model="fromDataSource_tw"/>  Twitter
 					</label>
 					<label class="boxWithMargin5">
-						<input type="checkbox" name="fromdatasrc" value="tumblr" ng-model="fromDataSource"/>  Tumblr
+						<input type="checkbox" name="fromdatasrc" value="tumblr" ng-model="fromDataSource_tu"/>  Tumblr
 					</label>
 
 					<label class="boxWithMargin5">
-						<input type="checkbox" name="fromdatasrc" value="flickr" ng-model="fromDataSource"/>  Flickr
+						<input type="checkbox" name="fromdatasrc" value="flickr" ng-model="fromDataSource_fl"/>  Flickr
 					</label>
 				</div>
 				<div class="col-md-6 addItem">

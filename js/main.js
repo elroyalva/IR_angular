@@ -60,15 +60,20 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   // function loadItems($query){
   //   return tags;
   // }
-
+  $scope.searchAdvanced = false;
+  $scope.langAdvanced = [];
+  $scope.sourceAdvanced = [];
   $scope.showAdvanced = function(){
      if (document.getElementById('formAdvanced').style.display == 'block') {
        document.getElementById('formAdvanced').style.display = 'none';
        document.getElementById('showAdvButton').value='Show Advanced Options';
+        $scope.searchAdvanced = false;
+
     }
     else {
       document.getElementById('formAdvanced').style.display = 'block';
-       document.getElementById('showAdvButton').value='Hide Advanced Options';
+      document.getElementById('showAdvButton').value='Hide Advanced Options';
+      $scope.searchAdvanced = true;
    }
   }
 
@@ -84,40 +89,76 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   }
 
   // $scope.date = new Date();
+  $scope.placeRequest = function(){
+    if($scope.queryText){
+      var searchTags=[];
+      for(tag in $scope.tags){
+        // console.log(JSON.stringify(tag));
+        searchTags.push($scope.tags[tag].text);
+      }
+      // console.log(JSON.stringify(searchTags));
+      // console.log(JSON.stringify($scope.country));
+      // console.log(JSON.stringify($scope.languageSelected));
+      if($scope.languageSelected_en)
+        $scope.langAdvanced.push("en");
+      if($scope.languageSelected_fr)
+        $scope.langAdvanced.push("fr");
+      if($scope.languageSelected_es)
+        $scope.langAdvanced.push("es");
+      if($scope.languageSelected_ar)
+        $scope.langAdvanced.push("ar");
 
-  var req = {
-     method: 'POST',
-     url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
-     headers: {
-       'Content-Type': 'application/json'
-     },
-     data: {
-        "query_sent":"Paris",
-        "advanced":false,
-        "advanced_attributes":{
-          "tags":[],
-          "location":"india",
-          "date":{"from":"2012-04-23T18:25:43.511Z","to":"2015-12-23T18:25:43.511Z"},
-          "lang":["en","fr","ar","es"],
-          "hasImages":true,
-          "sortbyViews":false,                          
-          "data_source":["twitter","tumblr"],                 
-          "urls":["t.co","fb.com"]
+      if($scope.fromDataSource_fl)
+        $scope.sourceAdvanced.push("flickr");
+      if($scope.fromDataSource_tw)
+        $scope.sourceAdvanced.push("twitter");
+      if($scope.fromDataSource_tu)
+        $scope.sourceAdvanced.push("tumblr");
+      
+      var req = {
+         method: 'POST',
+         url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         data: {
+            "query_sent": $scope.queryText,
+            "advanced":$scope.searchAdvanced,
+            "advanced_attributes":{
+              "tags": searchTags,
+              "location": $scope.country,
+              "date":{
+                "from":$scope.fromDate,
+                "to":$scope.toDate
+              },
+              "lang": $scope.langAdvanced,
+              // "hasImages":true,
+              // "sortbyViews":$scope.usePopularity,                          
+              "data_source":["twitter","tumblr"],                 
+              // "urls":["t.co","fb.com"]
+            }
+          }
         }
+      console.log(JSON.stringify(req));
+
+        // $http(req).then(function(){...}, function(){...});
+
+
+        $http(req)
+        .then(function(data) {
+          // alert($scope.queryText);
+          $scope.data = data;
+          $rootScope.resultData = data.data;
+        // console.log(JSON.stringify($rootScope.resultData));
+          // $rootScope.resultData = data;
+
+        });
+        $location.path('/results');
+      }
+      else{
+        alert("Enter a search query!!");
       }
     }
-
-    // $http(req).then(function(){...}, function(){...});
-
-
-    $http(req)
-    .then(function(data) {
-      $scope.data = data;
-      $rootScope.resultData = data.data;
-    // console.log(JSON.stringify($rootScope.resultData));
-      // $rootScope.resultData = data;
-
-    });
 // };
 
 
@@ -132,7 +173,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
     // console.log(JSON.stringify($rootScope.query));
   // });
 // alert(JSON.stringify($rootScope.query));
-      alert(JSON.stringify($rootScope.resultData));
+      // alert(JSON.stringify($rootScope.resultData));
 
 });
 
