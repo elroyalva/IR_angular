@@ -141,41 +141,99 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
  */
 app.controller('StatsCtrl', function ( $scope, $rootScope, $location, $http) {
   // console.log("Page Controller reporting for duty.");
-  $scope.hashtagLabels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.hashtagData = [300, 500, 100];
+  $scope.hashtagLabels = [];
+  $scope.hashtagData = [];
+  $scope.langLabels = [];
+  $scope.langData = [];
+  $scope.locationLabels = [];
+  $scope.locationData = [];
+  $scope.emotionLabels = [];
+  $scope.emotionData = [];
 
-  // var req = {
-  //    method: 'GET',
-  //    url: 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true',
-  //   }
+//   $http({
+//   method: 'GET',
+//   url: 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true'
+// }).then(function successCallback(response) {
+//     // this callback will be called asynchronously
+//     // when the response is available
+//       console.log(response);
+//   }, function errorCallback(response) {
+//     // called asynchronously if an error occurs
+//     // or server returns response with an error status.
+//       console.log(response);
+//   });
 
-  //   // $http(req).then(function(){...}, function(){...});
+// $http.get('http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true').
+//     success(function(data, status, headers, config) {
+//       // this callback will be called asynchronously
+//       // when the response is available
+//     }).
+//     error(function(data, status, headers, config) {
+//       // called asynchronously if an error occurs
+//       // or server returns response with an error status.
+//       console.log(status);
+//     });
+// $scope.topTerms = {}
+$.ajax({
+  'url': 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true',
+  'data': {'wt':'json','fl':'hashtags','numTerms':'10','indent':'true'},
+  'success': function(data) {
+    // alert(JSON.stringify(data));
+    $scope.topHashtags = data;
+    for(i=0;i<20;i=i+2){
+      $scope.hashtagLabels.push(data.fields.hashtags.topTerms[i]);
+      $scope.hashtagData.push(data.fields.hashtags.topTerms[i+1]);
+    }
+  },
+  'dataType': 'jsonp',
+  'jsonp': 'json.wrf'
+});
 
 
-  //   $http(req)
-  //   .then(function(data) {
-  //     alert(data);
-  //     // $scope.data = data;
-  //     // $rootScope.resultData = data.data;
-  //   // console.log(JSON.stringify($rootScope.resultData));
-  //     // $rootScope.resultData = data;
-      
-  //   });
+$.ajax({
+  'url': 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=lang&numTerms=10&wt=json&indent=true',
+  'data': {'wt':'json','fl':'hashtags','numTerms':'10','indent':'true'},
+  'success': function(data) {
+    // alert(JSON.stringify(data));
+    $scope.topHashtags = data;
+    for(i=0;i<6;i=i+2){
+      $scope.langLabels.push(data.fields.lang.topTerms[i]);
+      $scope.langData.push(data.fields.lang.topTerms[i+1]);
+    }
+  },
+  'dataType': 'jsonp',
+  'jsonp': 'json.wrf'
+});
 
-$http.get('http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true').
-    success(function(data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      console.log(data);
-    }).
-    error(function(data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log(JSON.stringify(config));
-    });
+$.ajax({
+  'url': 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=entity_location&numTerms=10&wt=json&indent=true',
+  'data': {'wt':'json','fl':'hashtags','numTerms':'10','indent':'true'},
+  'success': function(data) {
+    // alert(JSON.stringify(data));
+    $scope.topHashtags = data;
+    for(i=0;i<20;i=i+2){
+      $scope.locationLabels.push(data.fields.entity_location.topTerms[i]);
+      $scope.locationData.push(data.fields.entity_location.topTerms[i+1]);
+    }
+  },
+  'dataType': 'jsonp',
+  'jsonp': 'json.wrf'
+});
 
-
-
+$.ajax({
+  'url': 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=emotion&numTerms=10&wt=json&indent=true',
+  'data': {'wt':'json','fl':'hashtags','numTerms':'10','indent':'true'},
+  'success': function(data) {
+    // alert(JSON.stringify(data));
+    $scope.topHashtags = data;
+    for(i=0;i<data.fields.emotion.topTerms.length;i=i+2){
+      $scope.emotionLabels.push(data.fields.emotion.topTerms[i]);
+      $scope.emotionData.push(data.fields.emotion.topTerms[i+1]);
+    }
+  },
+  'dataType': 'jsonp',
+  'jsonp': 'json.wrf'
+});
 
 });
 
