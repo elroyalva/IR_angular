@@ -55,6 +55,7 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
 });
 
 app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
+  $rootScope.resultData = null;
   console.log("Home Controller reporting for duty.");
   $scope.tags=[{"text":"Syria"},{"text":"Paris"}]
   // function loadItems($query){
@@ -150,7 +151,7 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
           // alert($scope.queryText);
           $scope.data = data;
           $rootScope.resultData = data.data;
-        // console.log(JSON.stringify($rootScope.resultData));
+        console.log(JSON.stringify($rootScope.resultData));
           // $rootScope.resultData = data;
 
         });
