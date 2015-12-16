@@ -13,9 +13,13 @@ html, body {
 }
 
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    margin-top: 60px;
+    background: #999; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#000)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #fff,  #000); /* for firefox 3.6+ */
+    background-repeat: no-repeat;
+    min-height: 1200px;
+    margin-top: 60px
 }
 
 .dropdown {

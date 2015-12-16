@@ -89,6 +89,7 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   }
 
   // $scope.date = new Date();
+  
   $scope.placeRequest = function(){
     if($scope.queryText){
       var searchTags=[];
@@ -140,7 +141,7 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
           }
         }
       console.log(JSON.stringify(req));
-
+      $rootScope.queryHolder = $scope.queryText;
         // $http(req).then(function(){...}, function(){...});
 
 

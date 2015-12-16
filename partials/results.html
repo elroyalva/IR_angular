@@ -19,7 +19,7 @@
 <div class = "consolidated_result" style="margin-top:40px">
  <div class="row">
  <div class="col-md-8">
- <h2 style="margin-left:10%;margin-top:2%"> Results for {{query_here}} </h2>
+ <h2 style="margin-left:10%;margin-top:2%"> Results for {{queryHolder}} </h2>
  <p style="margin-left:10%;margin-top:2%"> Total {{resultData.response.numFound}} results were found in {{resultData.responseHeader.QTime}} seconds </p>
  </div>
  <div class="col-md-4">
@@ -27,18 +27,25 @@
  </div>
 </div>
 </div>
-</div>
+
+<div class="row">
+<div class="col-md-6">
 <div class="g" ng-repeat="result in resultData.response.docs" style="margin-top:20px">
     <div class="rc" data-hveid="41">
         <h3 class="r"><a ng-href="{{result.source}}" >{{result.source}}</a></h3>
-        <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3>
+       <!-- <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3>-->
         <div class="s">
             <div>
                 <h2><span class="st">{{result.id}}</span></h2>
-                <img ng-src="{{result.images[0]}}""/>
+                <img ng-src="{{result.images[0]}}"/>
                 <a class="btn btn-primary" ng-repeat="tag in result.hashtags" ng-href="#/tags/{{tag}}"> {{tag}}  </a>
                 <span class="st">{{result.text_en}}{{result.text_es}}{{result.text_fr}}{{result.text_ar}}</span>
             </div>
         </div>
     </div>
+</div>
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-4"></div>
+</div>
 </div>
