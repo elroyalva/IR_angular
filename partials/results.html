@@ -31,10 +31,10 @@
 <div class="row">
 <div class="col-md-6">
 <div class="g" ng-repeat="result in resultData.response.docs" style="margin-top:20px">
-    <div class="rc" data-hveid="41">
-        <h3 class="r"><a ng-href="{{result.source}}" >{{result.source}}</a></h3>
+   <!--  <div class="rc" data-hveid="41">
+        <h3 class="r"><a ng-href="{{result.source}}" >{{result.source}}</a></h3>-->
        <!-- <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3>-->
-        <div class="s">
+        <!-- <div class="s">
             <div>
                 <h2><span class="st">{{result.id}}</span></h2>
                 <img ng-src="{{result.images[0]}}"/>
@@ -42,10 +42,18 @@
                 <span class="st">{{result.text_en}}{{result.text_es}}{{result.text_fr}}{{result.text_ar}}</span>
             </div>
         </div>
-    </div>
+    </div> --> 
+        <div style = "border-style: solid; border-color: grey; width:auto; height:200px">
+        <div style="max-width:60%;float:left">
+            <h4>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '.' }}</h4>
+        </div>
+        <div style="width:40%;float:right;margin-top:15px">
+        <p> Source : {{result.source}}</p>
+        </div>
+        </div>
 </div>
 </div>
 <div class="col-md-2"></div>
-<div class="col-md-4"></div>
+<div class="col-md-4" style="border-style: solid; border-color: grey; height:800px"></div>
 </div>
 </div>
