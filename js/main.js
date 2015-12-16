@@ -12,7 +12,7 @@ var app = angular.module('tutorialWebApp', [
   'ngTagsInput',
   'ngAnimate',
   '720kb.datepicker',
-  'chart.js'
+  'chart.js',
 ]);
 
 /**
@@ -37,7 +37,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/stats", {
       templateUrl: "partials/stats.html", 
       controller: "StatsCtrl",
-      css: "css/main.css"
+      css: "css/stats.css"
+    })
+    .when("/tags", {
+      templateUrl: "partials/tags.html", 
+      controller: "TagsCtrl",
+      css: "css/tags.css"
     })
     // .when("/contact", {templateUrl: "partials/contact.html", controller: "PageCtrl"})
     // Blog
@@ -62,8 +67,6 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   //   return tags;
   // }
   $scope.searchAdvanced = false;
-  $scope.langAdvanced = [];
-  $scope.sourceAdvanced = [];
   $scope.showAdvanced = function(){
      if (document.getElementById('formAdvanced').style.display == 'block') {
        document.getElementById('formAdvanced').style.display = 'none';
@@ -90,9 +93,12 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
   }
 
   // $scope.date = new Date();
-  
+  $scope.fromDate = '2012-04-23';
+  $scope.toDate = '2015-12-15';
   $scope.placeRequest = function(){
     if($scope.queryText){
+      $scope.langAdvanced = [];
+      $scope.sourceAdvanced = [];
       var searchTags=[];
       for(tag in $scope.tags){
         // console.log(JSON.stringify(tag));
@@ -111,11 +117,11 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
         $scope.langAdvanced.push("ar");
 
       if($scope.fromDataSource_fl)
-        $scope.sourceAdvanced.push("flickr");
+        $scope.sourceAdvanced.push("Flickr");
       if($scope.fromDataSource_tw)
-        $scope.sourceAdvanced.push("twitter");
+        $scope.sourceAdvanced.push("Twitter");
       if($scope.fromDataSource_tu)
-        $scope.sourceAdvanced.push("tumblr");
+        $scope.sourceAdvanced.push("Tumblr");
       
       var req = {
          method: 'POST',
@@ -124,20 +130,20 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
            'Content-Type': 'application/json'
          },
          data: {
-            "query_sent": $scope.queryText,
+            "query_sent": $scope.queryText || '',
             "advanced":$scope.searchAdvanced,
             "advanced_attributes":{
               "tags": searchTags,
-              "location": $scope.country,
+              "location": $scope.country || '',
               "date":{
                 "from":$scope.fromDate+'T00:00:00.0Z',
                 "to":$scope.toDate+'T23:59:59.9Z'
               },
               "lang": $scope.langAdvanced,
-              // "hasImages":true,
-              // "sortbyViews":$scope.usePopularity,                          
-              "data_source":["twitter","tumblr"],                 
-              // "urls":["t.co","fb.com"]
+              "hasImages":false,
+              "sortbyViews":false,                          
+              "data_source":[],                 
+              "urls":$scope.sourceAdvanced
             }
           }
         }
@@ -176,6 +182,46 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
   // });
 // alert(JSON.stringify($rootScope.query));
       // alert(JSON.stringify($rootScope.resultData));
+
+      
+});
+
+app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location, $http){
+
+  var req = {
+         method: 'POST',
+         url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         data: {
+            "query_sent":'',
+            "advanced": true,
+            "advanced_attributes":{
+              "tags": [$routeParams.tag],
+              "location": '',
+              "date":{
+                "from":'',
+                "to":''
+              },
+              "lang": [],
+              "hasImages":false,
+              "sortbyViews":false,                          
+              "data_source":[],                 
+              "urls": []
+            }
+          }
+        }
+
+        $http(req)
+        .then(function(data) {
+          // alert($scope.queryText);
+          $scope.data = data;
+          $rootScope.resultData = data.data;
+        console.log(JSON.stringify($rootScope.resultData));
+          // $rootScope.resultData = data;
+        });
+
 
 });
 

@@ -4,3 +4,23 @@ body{
 	min-height: 1200px;
 	margin-top: 60px
 }
+
+.lightGreen{
+	background-color: #C7FFC9;
+}
+
+.green{
+	background-color: green;
+}
+
+.yellow{
+	background-color: #FFFFBD;
+}
+
+.orange{
+	background-color: #FFD07A;
+}
+
+.red{
+	background-color: #FF8B8B;
+}
