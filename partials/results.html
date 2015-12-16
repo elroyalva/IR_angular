@@ -16,8 +16,12 @@
 <p> Results for {{resultData.responseHeader.params.q.text_en}}  {{resultData.responseHeader.params.q.text_en}}  {{resultData.responseHeader.params.q.text_en}}</p> 
 </div> -->
 
-
-<div class="g" ng-repeat="result in resultData.response.docs">
+<div class = "consolidated_result" style="margin-top:60px">
+ <p> Results for {{query_here}} </p>
+ <p> Total {{resultData.response.numFound}} results were found in {{resultData.responseHeader.QTime}} seconds </p>
+</div>
+<!--
+<div class="g" ng-repeat="result in resultData.response.docs" style="margin-top:20px">
     <div class="rc" data-hveid="41">
         <h3 class="r"><a ng-href="{{result.source}}" >{{result.source}}</a></h3>
         <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3>
@@ -30,4 +34,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

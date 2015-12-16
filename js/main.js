@@ -138,7 +138,26 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
               // "urls":["t.co","fb.com"]
             }
           }
-        }
+
+//  var req = {
+  //   method: 'POST',
+    // url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
+    // headers: {
+     //  'Content-Type': 'application/json'
+   //  },
+    /// data: {
+      //  "query_sent":"Syria",
+       // "advanced":false,
+       /// "advanced_attributes":{
+        //  "tags":[],
+        //  "location":"india",
+        //  "date":{"from":"2012-04-23T18:25:43.511Z","to":"2015-12-23T18:25:43.511Z"},
+       //   "lang":["en","fr","ar","es"],
+       //   "hasImages":true,
+       //   "sortbyViews":false,                          
+       //   "data_source":["twitter","tumblr"],                 
+       //   "urls":["t.co","fb.com"]
+      //  }
       console.log(JSON.stringify(req));
 
         // $http(req).then(function(){...}, function(){...});
@@ -174,7 +193,52 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
   // });
 // alert(JSON.stringify($rootScope.query));
       // alert(JSON.stringify($rootScope.resultData));
+      alert(JSON.stringify($rootScope.resultData));
+      $scope.query_unformatted = $rootScope.resultData.responseHeader.params.q;
+      $scope.query_here = $scope.query_unformatted.substring(9, $scope.query_unformatted.length - 1);
+      console.log($scope.query_here);
 
+      $scope.positive = 0;
+      $scope.vpositive = 0;
+      $scope.neutral = 0;
+      $scope.negative = 0;
+      $scope.vnegative = 0;
+
+      $scope.length123 = $rootScope.resultData.response.docs.length;
+      
+      for(var i=0;i<$scope.length123;i++){
+        console.log($rootScope.resultData.response.docs[i].emotion);
+        $scope.response_var = $rootScope.resultData.response.docs[i].emotion;
+        //console.log($scope.response.emotion+" is the emotion");
+          switch($scope.response_var){
+           case "Positive":{
+              $scope.positive++;
+              break;
+          }
+          case "Negative":{
+             $scope.negative++;
+            break;
+          }
+          case "Very Negative":{
+             $scope.vnegative++;
+            break;
+          }
+          case "Very Positive":{
+              $scope.vpositive++;
+            break;
+          }
+          case "Neutral":{
+              $scope.neutral++;
+            break;
+          }
+        }
+      }
+
+      console.log($scope.positive);
+      console.log($scope.negative);
+      console.log($scope.vpositive);
+      console.log($scope.vnegative);
+      console.log($scope.neutral);
 });
 
 /**
