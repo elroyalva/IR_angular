@@ -20,10 +20,10 @@
  <div class="row">
  <div class="col-md-8">
  <h2 style="margin-left:10%;margin-top:2%"> Results for {{queryHolder}} </h2>
- <p style="margin-left:10%;margin-top:2%"> Total {{resultData.response.numFound}} results were found in {{resultData.responseHeader.QTime}} seconds </p>
+ 
  </div>
  <div class="col-md-4">
-     <h3 style="margin-left:25%;margin-top:9%"> Graph Analytics</h3>
+     <h3 style="margin-left:25%;margin-top:9%"> Query Analytics</h3>
  </div>
 </div>
 </div>
@@ -33,43 +33,46 @@
 <div ng-repeat="result in resultData.response.docs"
      style="margin-top:20px;" 
      ng-class="{'Positive':'lightGreen', 'Negative':'orange', 'Very negative':'red', 'Very positive':'green', 'Neutral':'yellow'}[result.emotion]">
-     <!-- <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3> -->
-   <!--
-    <div class="rc" data-hveid="41">
-        <h3 class="r"><a ng-href="{{result.source}}" >{{result.source}}</a></h3>
-        <h3 class="r"><a ng-href="{{result.source}}" >{{result}}</a></h3>
-        <div class="s">
-            <div>
-                <h2><span class="st">{{result.id}}</span></h2>
-                <a ng-href="{{result.images[0]}}"><img ng-src="{{result.images[0]}}"/></a>
-                <div ng-repeat="url in result.url">
-                    <a ng-href="{{url}}">{{url}}</a>
-                </div>
-                <div ng-repeat="url in result.images">
-                    <a ng-href="{{url}}">{{url}}</a>
-                </div>
-                <a class="btn btn-primary" ng-repeat="tag in result.hashtags" ng-href="#/tags/{{tag}}"> {{tag}}  </a>
-                <span class="st">{{result.text_en}}{{result.text_es}}{{result.text_fr}}{{result.text_ar}}</span>
-            </div>
+    
+        <div style = "width:555px; height:320px">
+        <div style="margin-left:20px;width:300px;float:left;margin-top:20px">
+            <h5>{{result.text_en | limitTo: 20}} {{result.text_en.length > 20 ? '...' : '.' }}</h5>
         </div>
-    </div> --> 
-        <div style = "border-style: solid; border-color: grey; width:auto; height:200px">
-        <div style="max-width:60%;float:left">
-            <h4>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '.' }}</h4>
+        <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
+            <h6>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '.' }}</h6>
         </div>
-        <div style="width:40%;float:right;margin-top:15px">
+        <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
+            <h6>Posted by <b>{{result.id}}</b></h6>
+        </div>
+        <div style="margin-left:20px;width:300px;float:left" ng-show="{{result.url[0] ? 'true' : 'false'}}">
+            <h6>Post Link: <a ng-href="{{result.url[0]}}">{{result.url[0]}}</a></h6>
+        </div>
+        
+        <div style="margin-left:20px;width:300px;float:left ">
+            <a class="btn btn-primary hashtagPad" ng-repeat="tag in result.hashtags | limitTo: 10" ng-href="#/tags/{{tag}}" style="margin-top: 1px; margin-bottom: 1px; margin-left: 2px; padding: 2px 2px"> {{tag}}  </a>
+        </div>    
+        <div style="margin-left:420px;color:#8D7C7C;margin-top:10px; padding-top:20px">
         <p> Source : {{result.source}}</p>
+        </div>
+        <div style="margin-left:390px;color:#8D7C7C;margin-top:10px">
+        <a ng-href="{{result.images[0]}}"><img ng-src="{{result.images[0]}}" style="width:120px !important; height:120px !important" /></a>
+        </div>
+        <div style="margin-left:390px;margin-top:14px; width:80px" ng-show="{{result.images[0] ? 'true' : 'false'}}">
+            <h6>Image Link: <a ng-href="{{result.images[0]}}">{{result.images[0]}}</a></h6>
         </div>
         </div>
 </div>
 </div>
 <div class="col-md-2"></div>
-<div class="col-md-4" style="border-style: solid; border-color: grey; height:800px">
+<div class="col-md-4" style="height:800px">
 
     <canvas id="emotionChart" class="chart chart-doughnut"
-      chart-data="emotionData" chart-labels="emotionLabels" chart-legend="true" style="margin-top:10px"> chart-series="series"
+      chart-data="emotionData" chart-labels="emotionLabels" chart-legend="true" style="margin-top:80px"> chart-series="series"
     </canvas>
 
+    <p style="margin-left:10%;margin-top:15%"> Number of Results: <b>{{resultData.response.numFound}}</b></p>
+    <p style="margin-left:10%;margin-top:3%"> Time Taken: <b>{{resultData.responseHeader.QTime}}</b> seconds </p>
 </div>
+
 </div>
 </div>

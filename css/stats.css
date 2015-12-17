@@ -8,17 +8,12 @@ For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap
 
 /* Global Styles */
 
-html, body {
-    height: 100%;
-}
+
 
 body {
-    background: #999; /* for non-css3 browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#000)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #fff,  #000); /* for firefox 3.6+ */
+    background: #eee; /* for non-css3 browsers */
     background-repeat: no-repeat;
-    min-height: 1200px;
+    min-height: 1000px;
     margin-top: 60px
 }
 
@@ -139,4 +134,21 @@ footer {
         height: 70%;
         /* increases the carousel height so it looks good on phones */
     }
+}
+
+.sizer{
+    max-width: 700px; !important
+    max-height: 350px; !important
+}
+
+#snapleft{
+    margin-left:10px;
+}
+
+#snapright{
+    margin-right: 750px;
+}
+
+.blackify{
+    padding : 20px;
 }

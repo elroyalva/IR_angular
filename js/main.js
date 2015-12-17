@@ -39,7 +39,7 @@ app.config(['$routeProvider', function ($routeProvider) {
       controller: "StatsCtrl",
       css: "css/stats.css"
     })
-    .when("/tags", {
+    .when("/tags/:tag", {
       templateUrl: "partials/tags.html", 
       controller: "TagsCtrl",
       css: "css/tags.css"
@@ -213,7 +213,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
 });
 
 app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location, $http){
-
+ 
   var req = {
          method: 'POST',
          url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
@@ -221,14 +221,14 @@ app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location,
            'Content-Type': 'application/json'
          },
          data: {
-            "query_sent":'',
+            "query_sent": $routeParams.tag,
             "advanced": true,
             "advanced_attributes":{
               "tags": [$routeParams.tag],
               "location": '',
               "date":{
-                "from":'',
-                "to":''
+                "from":'2012-04-23T23:59:59.9Z',
+                "to":'2015-12-15T23:59:59.9Z'
               },
               "lang": [],
               "hasImages":false,
@@ -238,7 +238,9 @@ app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location,
             }
           }
         }
-
+        console.log(req);
+        alert(req);
+        alert($routeParams.tag);
         $http(req)
         .then(function(data) {
           // alert($scope.queryText);

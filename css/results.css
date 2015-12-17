@@ -5,6 +5,7 @@ body{
 	margin-top: 60px
 }
 
+
 .lightGreen{
 	background-color: #C7FFC9;
 }
@@ -23,4 +24,14 @@ body{
 
 .red{
 	background-color: #FF8B8B;
+
+/*.btn{
+	margin-top: 1px !important;
+	margin-bottom: 1px !important;
+	margin-left: 2px !important;
+	padding: 2px 2px !important;
+}*/
+
+.hashtagPad{
+	margin-top: 1px; margin-bottom: 1px; margin-left: 2px; padding: 2px 2px;	
 }
