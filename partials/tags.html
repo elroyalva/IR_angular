@@ -89,11 +89,17 @@
     
         <div style = "width:600px; height:320px" ng-class="{'Positive':'lightGreen', 'Negative':'orange', 'Very negative':'red', 'Very positive':'green', 'Neutral':'yellow'}[result.emotion]">
         <div style="margin-left:20px;width:300px;float:left;margin-top:20px">
-            <h5>{{result.text_en | limitTo: 20}} {{result.text_en.length > 20 ? '...' : '.' }}</h5>
-        </div>
-        <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
-            <h6>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '.' }}</h6>
-        </div>
+                <h5>{{result.text_en | limitTo: 20}} {{result.text_en.length > 20 ? '...' : '' }}
+                    {{result.text_es | limitTo: 20}} {{result.text_es.length > 20 ? '...' : '' }}
+                    {{result.text_fr | limitTo: 20}} {{result.text_fr.length > 20 ? '...' : '' }}
+                    {{result.text_ar | limitTo: 20}} {{result.text_ar.length > 20 ? '...' : '' }}</h5>
+            </div>
+            <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
+                <h6>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '' }}
+                    {{result.text_es | limitTo: 140}} {{result.text_es.length > 140 ? '...' : '' }}
+                    {{result.text_fr | limitTo: 140}} {{result.text_fr.length > 140 ? '...' : '' }}
+                    {{result.text_ar | limitTo: 140}} {{result.text_ar.length > 140 ? '...' : '' }}</h6>
+            </div>
         <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
             <h6>Posted by <b>{{result.id}}</b></h6>
         </div>

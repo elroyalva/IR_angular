@@ -30,39 +30,50 @@
 
 <div class="row">
 <div class="col-md-7">
-<div ng-repeat="result in resultData.response.docs"
-     style="margin-top:20px;" 
-     ng-class="{'Positive':'lightGreen', 'Negative':'orange', 'Very negative':'red', 'Very positive':'green', 'Neutral':'yellow'}[result.emotion]">
-    
-        <div style = "width:600px; height:320px">
-        <div style="margin-left:20px;width:300px;float:left;margin-top:20px">
-            <h5>{{result.text_en | limitTo: 20}} {{result.text_en.length > 20 ? '...' : '.' }}</h5>
-        </div>
-        <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
-            <h6>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '.' }}</h6>
-        </div>
-        <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
-            <h6>Posted by <b>{{result.id}}</b></h6>
-        </div>
-        <div style="margin-left:20px;width:300px;float:left" ng-show="{{result.url[0] ? 'true' : 'false'}}">
-            <h6>Post Link: <a ng-href="{{result.url[0]}}">{{result.url[0]}}</a></h6>
-        </div>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" ng-click="filters.source = Twitter">Twitter</button>
+      <button type="button" class="btn btn-default" ng-click="filters.source = Tumblr">Tumblr</button>
+      <button type="button" class="btn btn-default" ng-click="filters.source = Flickr">Flickr</button>
+    </div>
+    <div ng-repeat="result in resultData.response.docs | filter : filters"
+         style="margin-top:20px;" 
+         ng-class="{'Positive':'lightGreen', 'Negative':'orange', 'Very negative':'red', 'Very positive':'green', 'Neutral':'yellow'}[result.emotion]">
         
-        <div style="margin-left:20px;width:300px;float:left ">
-            <a class="btn btn-primary hashtagPad" ng-repeat="tag in result.hashtags | limitTo: 10" ng-href="#/tags/{{tag}}" style="margin-top: 1px; margin-bottom: 1px; margin-left: 2px; padding: 2px 2px"> {{tag}}  </a>
-        </div>    
-        <div style="margin-left:420px;color:#8D7C7C;margin-top:10px; padding-top:20px">
-        <p> Source : {{result.source}}</p>
+        <div style = "width:600px; height:320px">
+            <div style="margin-left:20px;width:300px;float:left;margin-top:20px">
+                <h5>{{result.text_en | limitTo: 20}} {{result.text_en.length > 20 ? '...' : '' }}
+                    {{result.text_es | limitTo: 20}} {{result.text_es.length > 20 ? '...' : '' }}
+                    {{result.text_fr | limitTo: 20}} {{result.text_fr.length > 20 ? '...' : '' }}
+                    {{result.text_ar | limitTo: 20}} {{result.text_ar.length > 20 ? '...' : '' }}</h5>
+            </div>
+            <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
+                <h6>{{result.text_en | limitTo: 140}} {{result.text_en.length > 140 ? '...' : '' }}
+                    {{result.text_es | limitTo: 140}} {{result.text_es.length > 140 ? '...' : '' }}
+                    {{result.text_fr | limitTo: 140}} {{result.text_fr.length > 140 ? '...' : '' }}
+                    {{result.text_ar | limitTo: 140}} {{result.text_ar.length > 140 ? '...' : '' }}</h6>
+            </div>
+            <div style="margin-left:20px;width:300px;float:left;margin-top:1px">
+                <h6>Posted by <b>{{result.id}}</b></h6>
+            </div>
+            <div style="margin-left:20px;width:300px;float:left" ng-show="{{result.url[0] ? 'true' : 'false'}}">
+                <h6>Post Link: <a ng-href="{{result.url[0]}}">{{result.url[0]}}</a></h6>
+            </div>
+            
+            <div style="margin-left:20px;width:300px;float:left ">
+                <a class="btn btn-primary hashtagPad" ng-repeat="tag in result.hashtags | limitTo: 10" ng-href="#/tags/{{tag}}" style="margin-top: 1px; margin-bottom: 1px; margin-left: 2px; padding: 2px 2px"> {{tag}}  </a>
+            </div>    
+            <div style="margin-left:420px;color:#8D7C7C;margin-top:10px; padding-top:20px">
+            <p> Source : {{result.source}}</p>
+            </div>
+            <div style="margin-left:390px;color:#8D7C7C;margin-top:10px">
+            <a ng-href="{{result.images[0]}}"><img ng-src="{{result.images[0]}}" style="width:120px !important; height:120px !important" /></a>
+            </div>
+            <div style="margin-left:390px;margin-top:14px; width:80px" ng-show="{{result.images[0] ? 'true' : 'false'}}">
+                <h6>Image Link: <a ng-href="{{result.images[0]}}">{{result.images[0]}}</a></h6>
+            </div>
+            </div>
         </div>
-        <div style="margin-left:390px;color:#8D7C7C;margin-top:10px">
-        <a ng-href="{{result.images[0]}}"><img ng-src="{{result.images[0]}}" style="width:120px !important; height:120px !important" /></a>
-        </div>
-        <div style="margin-left:390px;margin-top:14px; width:80px" ng-show="{{result.images[0] ? 'true' : 'false'}}">
-            <h6>Image Link: <a ng-href="{{result.images[0]}}">{{result.images[0]}}</a></h6>
-        </div>
-        </div>
-</div>
-</div>
+    </div>
 <div class="col-md-1"></div>
 <div class="col-md-4" style="height:800px">
 
