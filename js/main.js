@@ -216,7 +216,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
 });
 
 app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location, $http){
- 
+  $rootScope.resultData=null;
   var req = {
          method: 'POST',
          url: 'http://52.24.214.137:8080/SolrSearch/solr/search',
@@ -242,17 +242,41 @@ app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location,
           }
         }
         console.log(req);
-        alert(req);
-        alert($routeParams.tag);
+        $scope.queryHolder = $routeParams.tag;
+        // alert(req);
+        // alert($routeParams.tag);
         $http(req)
         .then(function(data) {
           // alert($scope.queryText);
           $scope.data = data;
           $rootScope.resultData = data.data;
         console.log(JSON.stringify($rootScope.resultData));
+        $scope.pos = 0;
+        $scope.vpos = 0;
+        $scope.neu = 0;
+        $scope.neg = 0;
+        $scope.vneg = 0;
+        // alert(JSON.stringify($rootScope.resultData));
+        $scope.data = $rootScope.resultData.response.docs;
+        for(i=0; i<$scope.data.length;i++){
+          if($scope.data[i].emotion === 'Very positive')
+            $scope.vpos++;
+          if($scope.data[i].emotion === 'Very negative')
+            $scope.vneg++;
+          if($scope.data[i].emotion === 'Positive')
+            $scope.pos++;
+          if($scope.data[i].emotion === 'Neutral')
+            $scope.neu++;
+          if($scope.data[i].emotion === 'Negative')
+            $scope.neg++;
+        }
+        // alert($scope.neu+''+$scope.vneg+''+$scope.vpos+''+$scope.neg+''+$scope.pos);
+
+        $scope.emotionLabels=["Very Positive","Positive", "Neutral", "Negative", "Very Negative"];
+        $scope.emotionData= [$scope.vpos,$scope.pos,$scope.neu,$scope.neg,$scope.vneg];
+
           // $rootScope.resultData = data;
         });
-
 
 });
 
