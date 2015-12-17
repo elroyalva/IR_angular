@@ -159,9 +159,8 @@ app.controller('HomeCtrl', function ($scope, $rootScope, $location, $http) {
           $rootScope.resultData = data.data;
         console.log(JSON.stringify($rootScope.resultData));
           // $rootScope.resultData = data;
-
-        });
         $location.path('/results');
+        });
       }
       else{
         alert("Enter a search query!!");
@@ -183,6 +182,33 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
 // alert(JSON.stringify($rootScope.query));
       // alert(JSON.stringify($rootScope.resultData));
 
+
+  //     $scope.$on('$viewContentLoaded', function(){
+  //   //Here your view content is fully loaded !!
+  // });
+      $scope.pos = 0;
+      $scope.vpos = 0;
+      $scope.neu = 0;
+      $scope.neg = 0;
+      $scope.vneg = 0;
+      alert(JSON.stringify($rootScope.resultData));
+      $scope.data = $rootScope.resultData.response.docs;
+      for(i=0; i<$scope.data.length;i++){
+        if($scope.data[i].emotion === 'Very positive')
+          $scope.vpos++;
+        if($scope.data[i].emotion === 'Very negative')
+          $scope.vneg++;
+        if($scope.data[i].emotion === 'Positive')
+          $scope.pos++;
+        if($scope.data[i].emotion === 'Neutral')
+          $scope.neu++;
+        if($scope.data[i].emotion === 'Negative')
+          $scope.neg++;
+      }
+      alert($scope.neu+''+$scope.vneg+''+$scope.vpos+''+$scope.neg+''+$scope.pos);
+
+      $scope.emotionLabels=["Very Positive","Positive", "Neutral", "Negative", "Very Negative"];
+      $scope.emotionData= [$scope.vpos,$scope.pos,$scope.neu,$scope.neg,$scope.vneg];
       
 });
 
