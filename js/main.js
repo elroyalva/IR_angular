@@ -186,12 +186,15 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
   //     $scope.$on('$viewContentLoaded', function(){
   //   //Here your view content is fully loaded !!
   // });
+    
+      if($rootScope.resultData === "" || $rootScope.resultData == null)
+        $location.path('/');
       $scope.pos = 0;
       $scope.vpos = 0;
       $scope.neu = 0;
       $scope.neg = 0;
       $scope.vneg = 0;
-      alert(JSON.stringify($rootScope.resultData));
+      // alert(JSON.stringify($rootScope.resultData));
       $scope.data = $rootScope.resultData.response.docs;
       for(i=0; i<$scope.data.length;i++){
         if($scope.data[i].emotion === 'Very positive')
@@ -205,7 +208,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
         if($scope.data[i].emotion === 'Negative')
           $scope.neg++;
       }
-      alert($scope.neu+''+$scope.vneg+''+$scope.vpos+''+$scope.neg+''+$scope.pos);
+      // alert($scope.neu+''+$scope.vneg+''+$scope.vpos+''+$scope.neg+''+$scope.pos);
 
       $scope.emotionLabels=["Very Positive","Positive", "Neutral", "Negative", "Very Negative"];
       $scope.emotionData= [$scope.vpos,$scope.pos,$scope.neu,$scope.neg,$scope.vneg];
@@ -256,7 +259,7 @@ app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location,
 /**
  * Controls all other Pages
  */
-app.controller('StatsCtrl', function ( $scope, $rootScope, $location, $http) {
+app.controller('StatsCtrl', function ( $scope, $rootScope, $location, $http, $route) {
   // console.log("Page Controller reporting for duty.");
   $scope.hashtagLabels = [];
   $scope.hashtagData = [];
@@ -267,30 +270,6 @@ app.controller('StatsCtrl', function ( $scope, $rootScope, $location, $http) {
   $scope.emotionLabels = [];
   $scope.emotionData = [];
 
-//   $http({
-//   method: 'GET',
-//   url: 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true'
-// }).then(function successCallback(response) {
-//     // this callback will be called asynchronously
-//     // when the response is available
-//       console.log(response);
-//   }, function errorCallback(response) {
-//     // called asynchronously if an error occurs
-//     // or server returns response with an error status.
-//       console.log(response);
-//   });
-
-// $http.get('http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true').
-//     success(function(data, status, headers, config) {
-//       // this callback will be called asynchronously
-//       // when the response is available
-//     }).
-//     error(function(data, status, headers, config) {
-//       // called asynchronously if an error occurs
-//       // or server returns response with an error status.
-//       console.log(status);
-//     });
-// $scope.topTerms = {}
 $.ajax({
   'url': 'http://52.24.214.137:8983/solr/partc/admin/luke?fl=hashtags&numTerms=10&wt=json&indent=true',
   'data': {'wt':'json','fl':'hashtags','numTerms':'10','indent':'true'},
@@ -351,7 +330,6 @@ $.ajax({
   'dataType': 'jsonp',
   'jsonp': 'json.wrf'
 });
-
 });
 
 app.directive('img', function () {
