@@ -104,7 +104,7 @@
         <div style="margin-left:20px;width:300px;float:left ">
             <a class="btn btn-primary hashtagPad" ng-repeat="tag in result.hashtags | limitTo: 10" ng-href="#/tags/{{tag}}" style="margin-top: 1px; margin-bottom: 1px; margin-left: 2px; padding: 2px 2px"> {{tag}}  </a>
         </div>    
-        <div style="margin-left:420px;color:#8D7C7C;margin-top:10px; padding-top:20px">
+        <div style="margin-left:400px;color:#8D7C7C;margin-top:10px; padding-top:20px">
         <p> Source : {{result.source}}</p>
         </div>
         <div style="margin-left:390px;color:#8D7C7C;margin-top:10px">
@@ -120,7 +120,7 @@
 <div class="col-md-4" style="height:800px">
 
     <canvas id="emotionChart" class="chart chart-doughnut"
-      chart-data="emotionData" chart-labels="emotionLabels" chart-legend="true" style="margin-top:80px"> chart-series="series"
+      chart-data="emotionData" chart-labels="emotionLabels" chart-legend="true" style="margin-top:80px" chart-colours="emotionArray"> chart-series="series"
     </canvas>
 
     <p style="margin-left:10%;margin-top:15%"> Number of Results: <b>{{resultData.response.numFound}}</b></p>

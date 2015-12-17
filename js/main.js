@@ -186,7 +186,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
   //     $scope.$on('$viewContentLoaded', function(){
   //   //Here your view content is fully loaded !!
   // });
-    
+     $scope.emotionArray=["#00ff00","#00dd00","#5a93e9","#E69731","#ff0000"];
       if($rootScope.resultData === "" || $rootScope.resultData == null)
         $location.path('/');
       $scope.pos = 0;
@@ -216,6 +216,7 @@ app.controller('ResultCtrl', function($scope, $rootScope, $location, $http){
 });
 
 app.controller('TagsCtrl', function($routeParams, $scope, $rootScope, $location, $http){
+  $scope.emotionArray=["#00ff00","#00dd00","#5a93e9","#E69731","#ff0000"];
   $rootScope.resultData=null;
   var req = {
          method: 'POST',
